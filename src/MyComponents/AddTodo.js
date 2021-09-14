@@ -12,6 +12,8 @@ const AddTodo =({Addtodoitem})=>{
             alert('Either Title or Description is Empty!')
         }else{
             Addtodoitem(title,desc);
+            setTitle("");
+            setDesc("");
         }
     }
     return (

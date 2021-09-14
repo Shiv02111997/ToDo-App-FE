@@ -6,7 +6,7 @@ const Todos=({todos,onDelete})=>{
         <div>
             {todos.length===0 ? "No Todos to display!":todos.map((todo)=>{
                         return(
-                            <TodoItem todo={todo} key={todo.id} onDelete={onDelete}/>
+                            <TodoItem todo={todo} key={todo} onDelete={onDelete}/>
                         )
             })}
 
