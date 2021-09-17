@@ -1,49 +1,49 @@
 //import logo from './logo.svg';
-import {useState} from "react";
+import { useState} from "react";
 import './App.css';
-import Header from "./MyComponents/Header";
-import Todos from "./MyComponents/Todos";
-import Footer from "./MyComponents/Footer";
-import AddTodo from "./MyComponents/AddTodo";
-//import data from "./MyComponents/data.js";
-//import {useEffect} from "react";
+import Header from "./MyJS/Header";
+import Todos from "./MyJS/Todos";
+import Footer from "./MyJS/Footer";
+import AddTodo from "./MyJS/AddTodo";
+import data from "./MyJS/data.js";
+//import Axios from "./MyJS/Axios"
+//import axios from "axios";
+
 
 function App() {
-    let data;
-    if(window.localStorage.getItem('todos')===null){
-        data=[];
-    }else{
-        data=JSON.parse(localStorage.getItem('todos'));
-    }
 
     const onDelete=(todo)=>{
-        setTodos(todos.filter((e)=>{return e!==todo}))
-        window.localStorage.setItem('todos',JSON.stringify(todos));
+        setTodos(todos.filter((e)=>{return e!==todo}));
     };
 
-    const Addtodoitem = (title,desc) =>{
+    const Addtodoitem = (title) =>{
         const mytodo={
             title:title,
-            desc:desc,
+            status:false,
         }
-        window.localStorage.setItem('todos',JSON.stringify(todos))
         setTodos([...todos, mytodo]);
+    };
 
-        //console.log(todos);
-
-        }
+    const markDone=(index)=>{
+            const updatedTodos=[...todos];
+            updatedTodos[index].status=true;
+            setTodos(updatedTodos);
+    };
 
     const [todos, setTodos] = useState(data);
 
 
+
+
   return (
-    <div>
+    <div className="app">
         <Header />
         <AddTodo Addtodoitem={Addtodoitem}/>
-        <Todos todos={todos} onDelete={onDelete}/>
+        <Todos todos={todos} onDelete={onDelete} markDone={markDone}/>
         <Footer />
     </div>
   );
+
 }
 
 export default App;
